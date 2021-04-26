@@ -54,18 +54,37 @@ public class SocialMedia implements SocialMediaPlatform {
     public void changeAccountHandle(String oldHandle, String newHandle)
             throws HandleNotRecognisedException, IllegalHandleException, InvalidHandleException {
         // TODO Auto-generated method stub
+		allAccounts.forEach( acc -> {
+			if (acc.getHandle() == oldHandle) {
+				acc.setHandle(newHandle);
+			}
+		});
 
     }
 
     @Override
     public void updateAccountDescription(String handle, String description) throws HandleNotRecognisedException {
         // TODO Auto-generated method stub
+		allAccounts.forEach( acc -> {
+			if (acc.getHandle() == handle) {
+				acc.setDescription(description);
+			}
+		});
 
     }
 
     @Override
     public String showAccount(String handle) throws HandleNotRecognisedException {
         // TODO Auto-generated method stub
+		allAccounts.forEach( acc -> {
+			if (acc.getHandle() == handle) {
+				System.out.println("ID: "+acc.getID());
+				System.out.println("Handle: "+acc.getHandle());
+				System.out.println("Description: "+acc.getDescription());
+				System.out.println("Post Count: "+acc.getPostCount());
+				System.out.println("Endorse Count: "+acc.getEndorseCount());
+			}
+		});
         return null;
     }
 

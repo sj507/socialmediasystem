@@ -16,13 +16,24 @@ public class Comment
     private ArrayList<Endorsement> endorsements = new ArrayList<Endorsement>();
     
     private int postID;
+	
+	private String author;
+	
+	private int EndorsementCount;
+	
+	public void calculateEndorsments(){
+		endorsements.forEach( en -> {
+			EndorsementCount++;
+		})
+	}
          
        
-    public Comment( int i, String c, ArrayList<Comment> co, ArrayList<Endorsement> e, int pID ) {
+    public Comment( int i, String c, ArrayList<Comment> co, ArrayList<Endorsement> e, int pID, String a) {
         this.id = i;
         this.content = c;
         this.comments = co;
         this.endorsements = e;
         this.postID = pID;
+		this.author = a;
     }
 }

@@ -7,27 +7,22 @@
  */
 public class Comment
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Comment
-     */
-    public Comment()
-    {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+	private int id;
+    
+    private String content;
+    
+    private ArrayList<Comment> comments = new ArrayList<Comment>();
+    
+    private ArrayList<Endorsement> endorsements = new ArrayList<Endorsement>();
+	
+	private int postID;
+         
+       
+    public Post( int i, String c, ArrayList<Comment> co, ArrayList<Endorsement> e, int pID ) {
+        this.id = i;
+        this.content = c;
+        this.comments = co;
+        this.endorsements = e;
+		this.postID = pID;
     }
 }

@@ -11,7 +11,14 @@ public class Account
     private String description;
     
     private ArrayList<Post> posts = new ArrayList<Post>();
-         
+    
+    public int getId() {
+        return id;
+    }
+    
+    public String getHandle() {
+        return handle;
+    }
        
     public Account( int i, String h, String d,ArrayList<Post> p ) {
         this.id = i;

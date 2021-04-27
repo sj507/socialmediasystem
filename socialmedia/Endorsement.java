@@ -7,22 +7,22 @@ import java.util.ArrayList;
  */
 public class Endorsement
 {
-	private int id;
+    private int id;
     
     private String content;
-	
-	private int postID;
-	
-	private String postContent;
-	
-	private String author;
+    
+    private int postID;
+    
+    private String postContent;
+    
+    private String author;
          
        
     public Endorsement( int i, String c, int pID, String pc, String a ) {
         this.id = i;
         this.content = c;
-		this.postID = pID;
-		this.postContent = pc;
-		this.author = a;
+        this.postID = pID;
+        this.postContent = pc;
+        this.author = a;
     }
 }

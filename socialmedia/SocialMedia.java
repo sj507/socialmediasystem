@@ -11,19 +11,27 @@ import java.io.IOException;
  * @version 1.0
  */
 public class SocialMedia implements SocialMediaPlatform {
+    int postPointer = 0;
+    int endorsementPointer = 0;
+    int accountTotal = 0;
+    
     ArrayList<Account> allAccounts = new ArrayList<Account>();
+    
+    
     @Override
     public int createAccount(String handle) throws IllegalHandleException, InvalidHandleException {
         // TODO Auto-generated method stub
+        //concern: we dont have a check for unique handles which could complicate things later
         ArrayList<Post> p = new ArrayList<Post>();
         Account temp = new Account(allAccounts.size()+1, handle, "n/a", p );
         allAccounts.add(temp);
-        return 0;
+        return temp.getId();
     }
 
     @Override
     public int createAccount(String handle, String description) throws IllegalHandleException, InvalidHandleException {
         // TODO Auto-generated method stub
+        //concern: we dont have a check for unique handles which could complicate things later
         ArrayList<Post> p = new ArrayList<Post>();
         Account temp = new Account(allAccounts.size()+1, handle, description, p );
         allAccounts.add(temp);
@@ -54,43 +62,57 @@ public class SocialMedia implements SocialMediaPlatform {
     public void changeAccountHandle(String oldHandle, String newHandle)
             throws HandleNotRecognisedException, IllegalHandleException, InvalidHandleException {
         // TODO Auto-generated method stub
-		allAccounts.forEach( acc -> {
-			if (acc.getHandle() == oldHandle) {
-				acc.setHandle(newHandle);
-			}
-		});
+        allAccounts.forEach( acc -> {
+            if (acc.getHandle() == oldHandle) {
+                acc.setHandle(newHandle);
+            }
+        });
 
     }
 
     @Override
     public void updateAccountDescription(String handle, String description) throws HandleNotRecognisedException {
         // TODO Auto-generated method stub
-		allAccounts.forEach( acc -> {
-			if (acc.getHandle() == handle) {
-				acc.setDescription(description);
-			}
-		});
+        allAccounts.forEach( acc -> {
+            if (acc.getHandle() == handle) {
+                acc.setDescription(description);
+            }
+        });
 
     }
 
     @Override
     public String showAccount(String handle) throws HandleNotRecognisedException {
         // TODO Auto-generated method stub
-		allAccounts.forEach( acc -> {
-			if (acc.getHandle() == handle) {
-				System.out.println("ID: "+acc.getID());
-				System.out.println("Handle: "+acc.getHandle());
-				System.out.println("Description: "+acc.getDescription());
-				System.out.println("Post Count: "+acc.getPostCount());
-				System.out.println("Endorse Count: "+acc.getEndorseCount());
-			}
-		});
+        allAccounts.forEach( acc -> {
+            if (acc.getHandle() == handle) {
+                System.out.println("ID: "+acc.getId());
+                System.out.println("Handle: "+acc.getHandle());
+                System.out.println("Description: "+acc.getDescription());
+                System.out.println("Post Count: "+acc.getPostCount());
+                System.out.println("Endorse Count: "+acc.getEndorseCount());
+            }
+        });
         return null;
     }
 
     @Override
     public int createPost(String handle, String message) throws HandleNotRecognisedException, InvalidPostException {
         // TODO Auto-generated method stub
+        postPointer = postPointer + 1;
+        
+        ArrayList<Comment> c = new ArrayList<Comment>();
+        ArrayList<Endorsement> e = new ArrayList<Endorsement>();
+        
+        
+        Post temp = new Post(postPointer, message, c, e, handle);
+        
+        allAccounts.forEach( acc -> {
+            if (acc.getHandle() == handle) {
+                acc.addPost(temp);
+            }
+        });
+        
         return 0;
     }
 
@@ -98,7 +120,20 @@ public class SocialMedia implements SocialMediaPlatform {
     public int endorsePost(String handle, int id)
             throws HandleNotRecognisedException, PostIDNotRecognisedException, NotActionablePostException {
         // TODO Auto-generated method stub
-        return 0;
+        
+        endorsementPointer = endorsementPointer + 1;
+        
+        allAccounts.forEach( acc -> {
+            acc.getPosts().forEach( post -> {
+                if (post.getId() == id) {
+                    String cont = "EP@" + post.getAuthor() + ": " + post.getContent();
+                    
+                    Endorsement temp = new Endorsement(endorsementPointer, cont, post.getId(), post.getContent(), handle);
+                }
+            });
+        });
+        
+        return endorsementPointer;
     }
 
     @Override
@@ -130,7 +165,11 @@ public class SocialMedia implements SocialMediaPlatform {
     @Override
     public int getNumberOfAccounts() {
         // TODO Auto-generated method stub
-        return 0;
+        accountTotal = 0;
+        allAccounts.forEach( acc -> {
+            accountTotal = accountTotal + 1;
+        });
+        return accountTotal;
     }
 
     @Override

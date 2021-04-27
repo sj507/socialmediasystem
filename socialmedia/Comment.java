@@ -24,7 +24,7 @@ public class Comment
 	public void calculateEndorsments(){
 		endorsements.forEach( en -> {
 			EndorsementCount++;
-		})
+		});
 	}
          
        

@@ -15,6 +15,14 @@ public class SocialMedia implements SocialMediaPlatform {
     int endorsementPointer = 0;
     int commentPointer = 0;
     int accountTotal = 0;
+    int totalPosts = 0;
+    int totalEndorsement = 0;
+    int totalComments = 0;
+    int mostEndorsedAccount = 0;
+    int mostEndorsedAccountID = 0;
+    int mostEndorsedPost = 0;
+    int mostEndorsedPostID = 0;
+    
     
     String printMessage;
     
@@ -196,6 +204,26 @@ public class SocialMedia implements SocialMediaPlatform {
     public StringBuilder showPostChildrenDetails(int id)
             throws PostIDNotRecognisedException, NotActionablePostException {
         // TODO Auto-generated method stub
+        allAccounts.forEach( acc -> {
+            acc.getPosts().forEach( post -> {
+                if (post.getId() == id) {
+                    //hjhjh
+                    StringBuilder str = new StringBuilder();
+ 
+                    str.append("ID: " + id + "\n" + "Account: " + post.getAuthor() + "\n" + "No. endorsements: "); 
+                    str.append(post.calculateEndorsments() + "\n" + post.getContent());
+                    
+                    str.append("↓");
+                    str.append("↓");
+                    
+                    post.getEndorsements().forEach( end -> {
+                        
+                    });
+                    
+                    
+                }
+            });
+        });
         return null;
     }
 
@@ -212,58 +240,86 @@ public class SocialMedia implements SocialMediaPlatform {
     @Override
     public int getTotalOriginalPosts() {
         // TODO Auto-generated method stub
-		totalPosts = 0;
-		allAccounts.forEach( acc -> {
-			totalPosts = totalPosts + acc.getPostCount();
-		});
+        totalPosts = 0;
+        allAccounts.forEach( acc -> {
+            totalPosts = totalPosts + acc.getPostCount();
+        });
         return totalPosts;
     }
 
     @Override
     public int getTotalEndorsmentPosts() {
         // TODO Auto-generated method stub
-		totalEndorsement = 0;
-		allAccounts.forEach( acc -> {
-			totalEndorsement = totalEndorsement + acc.getEndorseCount();
-		});
+        totalEndorsement = 0;
+        allAccounts.forEach( acc -> {
+            totalEndorsement = totalEndorsement + acc.getEndorseCount();
+        });
         return totalEndorsement;
     }
 
     @Override
     public int getTotalCommentPosts() {
         // TODO Auto-generated method stub
-		totalComments = 0;
-		allAccounts.forEach( acc -> {
-			totalComments = totalComments + acc.getCommentCount();
-		});
+        totalComments = 0;
+        allAccounts.forEach( acc -> {
+            totalComments = totalComments + acc.getCommentCount();
+        });
         return totalComments;
     }
-
+    
     @Override
     public int getMostEndorsedPost() {
         // TODO Auto-generated method stub
-        return 0;
+        
+        mostEndorsedPost = 0;
+        mostEndorsedPostID = 0;
+        
+        allAccounts.forEach( acc -> {
+            acc.getPosts().forEach( post -> {
+                if(post.calculateEndorsments() > mostEndorsedPost) {
+                    mostEndorsedPost = post.calculateEndorsments();
+                    mostEndorsedPostID = post.getId();
+                }
+            });
+        });
+        
+        return mostEndorsedPostID;
     }
 
     @Override
     public int getMostEndorsedAccount() {
         // TODO Auto-generated method stub
-		mostEndorsed = 0;
-		mostEndorsedID = 0;
-		allAccounts.forEach( acc -> {
-			if(acc.getEndorseCount() > mostEndorsed)
-			{
-				mostEndorsed = acc.getEndorseCount();
-				mostEndorsedID = acc.getId();
-			}
-		});		
-        return mostEndorsedID;
+        mostEndorsedAccount = 0;
+        mostEndorsedAccountID = 0;
+        allAccounts.forEach( acc -> {
+            if(acc.getEndorseCount() > mostEndorsedAccount)
+            {
+                mostEndorsedAccount = acc.getEndorseCount();
+                mostEndorsedAccountID = acc.getId();
+            }
+        });     
+        return mostEndorsedAccountID;
     }
 
     @Override
     public void erasePlatform() {
         // TODO Auto-generated method stub
-
+        int postPointer = 0;
+        int endorsementPointer = 0;
+        int commentPointer = 0;
+        int accountTotal = 0;
+        int totalPosts = 0;
+        int totalEndorsement = 0;
+        int totalComments = 0;
+        int mostEndorsedAccount = 0;
+        int mostEndorsedAccountID = 0;
+        int mostEndorsedPost = 0;
+        int mostEndorsedPostID = 0;
+    
+    
+        String printMessage = "";
+    
+        ArrayList<Account> allAccounts = null;
     }
 
     @Override

@@ -43,6 +43,13 @@ public class Post
         return this.content;
     }
     
+    public ArrayList<Comment> getComments() {
+        return this.comments;
+    }
+    
+    public ArrayList<Endorsement> getEndorsements() {
+        return this.endorsements;
+    }
        
     public Post( int i, String c, ArrayList<Comment> co, ArrayList<Endorsement> e, String a) {
         this.id = i;

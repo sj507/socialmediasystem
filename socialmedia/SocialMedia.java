@@ -13,7 +13,10 @@ import java.io.IOException;
 public class SocialMedia implements SocialMediaPlatform {
     int postPointer = 0;
     int endorsementPointer = 0;
+    int commentPointer = 0;
     int accountTotal = 0;
+    
+    String printMessage;
     
     ArrayList<Account> allAccounts = new ArrayList<Account>();
     
@@ -129,6 +132,8 @@ public class SocialMedia implements SocialMediaPlatform {
                     String cont = "EP@" + post.getAuthor() + ": " + post.getContent();
                     
                     Endorsement temp = new Endorsement(endorsementPointer, cont, post.getId(), post.getContent(), handle);
+                    
+                    post.addOneToEndorsements(temp);
                 }
             });
         });
@@ -140,19 +145,51 @@ public class SocialMedia implements SocialMediaPlatform {
     public int commentPost(String handle, int id, String message) throws HandleNotRecognisedException,
             PostIDNotRecognisedException, NotActionablePostException, InvalidPostException {
         // TODO Auto-generated method stub
-        return 0;
+        commentPointer = commentPointer + 1;
+        
+        allAccounts.forEach( acc -> {
+            acc.getPosts().forEach( post -> {
+                if (post.getId() == id) {
+                    String cont = message;
+                    
+                    Comment temp = new Comment(commentPointer, cont, id, handle);
+                    
+                    post.addOneToComments(temp);
+                }
+            });
+        });
+        
+        return commentPointer;
     }
 
     @Override
     public void deletePost(int id) throws PostIDNotRecognisedException {
         // TODO Auto-generated method stub
-
+        allAccounts.forEach( acc -> {
+            acc.getPosts().forEach( post -> {
+                if (post.getId() == id) {
+                    post = null;
+                    System.gc();
+                }
+            });
+        });
     }
 
     @Override
     public String showIndividualPost(int id) throws PostIDNotRecognisedException {
         // TODO Auto-generated method stub
-        return null;
+        printMessage = "";
+        
+        allAccounts.forEach( acc -> {
+            acc.getPosts().forEach( post -> {
+                if (post.getId() == id) {
+                        printMessage = "ID: " + id + "\n" + "Account: " + post.getAuthor() + "\n" + "No. endorsements: "; 
+                        printMessage = printMessage + post.calculateEndorsments() + "\n" + post.getContent();
+                }
+            });
+        });
+        
+        return printMessage;
     }
 
     @Override

@@ -16,10 +16,19 @@ public class Post
     
     private int EndorsementCount;
     
-    public void calculateEndorsments(){
+    public int calculateEndorsments(){
         endorsements.forEach( en -> {
             EndorsementCount++;
         });
+        return EndorsementCount;
+    }
+    
+    public void addOneToComments(Comment c) {
+        this.comments.add(c);
+    }
+    
+    public void addOneToEndorsements(Endorsement e) {
+        this.endorsements.add(e);
     }
     
     public int getId(){

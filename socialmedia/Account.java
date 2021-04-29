@@ -1,8 +1,11 @@
 import java.util.ArrayList;
 /**
  * Account class, for creating and storing account data.
+ * 
+ * @author Sam Judges, Tim Hake
+ * @version 29/04/2021
  */
-public class Account
+public class Account				/* Encapsulated attributes of the account class*/
 {
     private int id;
     
@@ -22,7 +25,7 @@ public class Account
         
     }
     
-    public int getId() {
+    public int getId() {					/* Getter methods to get account data*/
         return id;
     }
     
@@ -46,7 +49,7 @@ public class Account
         return endorseCount;
     }
     
-    public void setHandle(String newH){
+    public void setHandle(String newH){				/*Setter methods to change account data*/
         this.handle = newH;
     }
     
@@ -62,7 +65,7 @@ public class Account
         return this.posts;
     }
        
-    public Account( int i, String h, String d,ArrayList<Post> p ) {
+    public Account( int i, String h, String d,ArrayList<Post> p ) {			/*Account method to initalise instances of account class*/
         this.id = i;
         this.handle = h;
         this.description = d;

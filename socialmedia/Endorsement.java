@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 /**
- * Write a description of class Endorsement here.
+ * Endorsement class for storing endorsement data
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Sam Judges, Tim Hake
+ * @version 29/04/2021
  */
-public class Endorsement
+public class Endorsement			/*Encapsulated attributes of the endorsement class*/
 {
     private int id;
     
@@ -18,7 +18,7 @@ public class Endorsement
     private String author;
          
        
-    public Endorsement( int i, String c, int pID, String pc, String a ) {
+    public Endorsement( int i, String c, int pID, String pc, String a ) {		/*Endorsement method for instantiating endorsement objects*/
         this.id = i;
         this.content = c;
         this.postID = pID;

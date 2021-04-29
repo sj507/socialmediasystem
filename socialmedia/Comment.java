@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 /**
- * Write a description of class Comment here.
+ * Comment class for storing comment data.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Sam Judges, Tim Hake
+ * @version 29/04/2021
  */
-public class Comment
+public class Comment				/*Encapsulated attributes of the Comment class*/
 {
     private int id;
     
@@ -21,19 +21,19 @@ public class Comment
     
     private int EndorsementCount;
     
-    public void calculateEndorsments(){
+    public void calculateEndorsments(){		/*Method to count the endorsements each comment has*/
         endorsements.forEach( en -> {
             EndorsementCount++;
         });
     }
          
-    public Comment( int i, String c, int pID, String a) {
+    public Comment( int i, String c, int pID, String a) {		/*Method to instantiate comment objects without setting comments and endorsements*/
         this.id = i;
         this.content = c;
         this.postID = pID;
         this.author = a;
     }
-    public Comment( int i, String c, ArrayList<Comment> co, ArrayList<Endorsement> e, int pID, String a) {
+    public Comment( int i, String c, ArrayList<Comment> co, ArrayList<Endorsement> e, int pID, String a) {		/*Method to instantiate comment objects*/
         this.id = i;
         this.content = c;
         this.comments = co;

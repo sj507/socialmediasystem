@@ -212,19 +212,31 @@ public class SocialMedia implements SocialMediaPlatform {
     @Override
     public int getTotalOriginalPosts() {
         // TODO Auto-generated method stub
-        return 0;
+		totalPosts = 0;
+		allAccounts.forEach( acc -> {
+			totalPosts = totalPosts + acc.getPostCount();
+		});
+        return totalPosts;
     }
 
     @Override
     public int getTotalEndorsmentPosts() {
         // TODO Auto-generated method stub
-        return 0;
+		totalEndorsement = 0;
+		allAccounts.forEach( acc -> {
+			totalEndorsement = totalEndorsement + acc.getEndorseCount();
+		});
+        return totalEndorsement;
     }
 
     @Override
     public int getTotalCommentPosts() {
         // TODO Auto-generated method stub
-        return 0;
+		totalComments = 0;
+		allAccounts.forEach( acc -> {
+			totalComments = totalComments + acc.getCommentCount();
+		});
+        return totalComments;
     }
 
     @Override
@@ -236,7 +248,16 @@ public class SocialMedia implements SocialMediaPlatform {
     @Override
     public int getMostEndorsedAccount() {
         // TODO Auto-generated method stub
-        return 0;
+		mostEndorsed = 0;
+		mostEndorsedID = 0;
+		allAccounts.forEach( acc -> {
+			if(acc.getEndorseCount() > mostEndorsed)
+			{
+				mostEndorsed = acc.getEndorseCount();
+				mostEndorsedID = acc.getId();
+			}
+		});		
+        return mostEndorsedID;
     }
 
     @Override

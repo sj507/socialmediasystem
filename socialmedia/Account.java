@@ -37,6 +37,10 @@ public class Account
     public int getPostCount() {
         return posts.size();
     }
+	
+	public int getCommentCount() {
+		return comments.size()
+	}
     
     public int getEndorseCount() {
         return endorseCount;

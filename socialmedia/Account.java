@@ -42,7 +42,7 @@ public class Account				/* Encapsulated attributes of the account class*/
     }
 	
 	public int getCommentCount() {
-		return comments.size()
+		return comments.size();
 	}
     
     public int getEndorseCount() {

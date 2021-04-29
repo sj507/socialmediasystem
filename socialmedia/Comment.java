@@ -26,7 +26,19 @@ public class Comment				/*Encapsulated attributes of the Comment class*/
             EndorsementCount++;
         });
     }
-         
+      
+    public int getId() {
+        return this.id;
+    }
+    
+    public String getAuthor() {
+        return this.author;
+    }
+    
+    public String getContent() {
+        return this.content;
+    }
+    
     public Comment( int i, String c, int pID, String a) {		/*Method to instantiate comment objects without setting comments and endorsements*/
         this.id = i;
         this.content = c;

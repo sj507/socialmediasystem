@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * @author Sam Judges, Tim Hake
  * @version 29/04/2021
  */
-public class Endorsement			/*Encapsulated attributes of the endorsement class*/
+public class Endorsement            /*Encapsulated attributes of the endorsement class*/
 {
     private int id;
     
@@ -16,9 +16,21 @@ public class Endorsement			/*Encapsulated attributes of the endorsement class*/
     private String postContent;
     
     private String author;
+    
+    public int getId() {
+        return this.id;
+    }
+    
+    public String getAuthor() {
+        return this.author;
+    }
+    
+    public String getContent() {
+        return this.content;
+    }
          
        
-    public Endorsement( int i, String c, int pID, String pc, String a ) {		/*Endorsement method for instantiating endorsement objects*/
+    public Endorsement( int i, String c, int pID, String pc, String a ) {       /*Endorsement method for instantiating endorsement objects*/
         this.id = i;
         this.content = c;
         this.postID = pID;

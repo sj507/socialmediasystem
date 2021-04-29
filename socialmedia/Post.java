@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 /**
- * Account class, for creating and storing account data.
+ * Post class for storing post data
+ *
+ * @author Sam Judges, Tim Hake
+ * @version 29/04/2021
  */
 public class Post
 {

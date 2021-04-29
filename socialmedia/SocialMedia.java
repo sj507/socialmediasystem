@@ -4,7 +4,7 @@ import java.io.IOException;
 
 
 /**
- * BadSocialMedia is a minimally compiling, but non-functioning implementor of
+ * SocialMedia is a minimally compiling, but non-functioning implementor of
  * the SocialMediaPlatform interface.
  * 
  * @author Diogo Pacheco
@@ -23,8 +23,9 @@ public class SocialMedia implements SocialMediaPlatform {
     int mostEndorsedPost = 0;
     int mostEndorsedPostID = 0;
     
-    
     String printMessage;
+    
+    StringBuilder str = new StringBuilder();
     
     ArrayList<Account> allAccounts = new ArrayList<Account>();
     
@@ -206,10 +207,7 @@ public class SocialMedia implements SocialMediaPlatform {
         // TODO Auto-generated method stub
         allAccounts.forEach( acc -> {
             acc.getPosts().forEach( post -> {
-                if (post.getId() == id) {
-                    //hjhjh
-                    StringBuilder str = new StringBuilder();
- 
+                if (post.getId() == id) {    
                     str.append("ID: " + id + "\n" + "Account: " + post.getAuthor() + "\n" + "No. endorsements: "); 
                     str.append(post.calculateEndorsments() + "\n" + post.getContent());
                     
@@ -217,14 +215,26 @@ public class SocialMedia implements SocialMediaPlatform {
                     str.append("↓");
                     
                     post.getEndorsements().forEach( end -> {
+                        str.append("ID: " + end.getId() + "\n" + "Account: " + end.getAuthor() + "\n");
+                        str.append(end.getContent() + "\n");
                         
+                        str.append("↓");
+                        str.append("↓");
                     });
                     
+                    post.getComments().forEach( com -> {
+                        str.append("ID: " + com.getId() + "\n" + "Account: " + com.getAuthor() + "\n");
+                        str.append(com.getContent() + "\n");
+                        
+                        str.append("↓");
+                        str.append("↓");
+                    });
                     
+                    str.append("End of Thread");
                 }
             });
         });
-        return null;
+        return str;
     }
 
     @Override
@@ -316,10 +326,12 @@ public class SocialMedia implements SocialMediaPlatform {
         int mostEndorsedPost = 0;
         int mostEndorsedPostID = 0;
     
-    
+        str = null;
+        
         String printMessage = "";
     
         ArrayList<Account> allAccounts = null;
+        
     }
 
     @Override

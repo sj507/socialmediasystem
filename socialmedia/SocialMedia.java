@@ -33,7 +33,6 @@ public class SocialMedia implements SocialMediaPlatform {
     @Override
     public int createAccount(String handle) throws IllegalHandleException, InvalidHandleException {
         // TODO Auto-generated method stub
-        //concern: we dont have a check for unique handles which could complicate things later
         ArrayList<Post> p = new ArrayList<Post>();
         Account temp = new Account(allAccounts.size()+1, handle, "n/a", p );
         allAccounts.add(temp);
@@ -43,7 +42,6 @@ public class SocialMedia implements SocialMediaPlatform {
     @Override
     public int createAccount(String handle, String description) throws IllegalHandleException, InvalidHandleException {
         // TODO Auto-generated method stub
-        //concern: we dont have a check for unique handles which could complicate things later
         ArrayList<Post> p = new ArrayList<Post>();
         Account temp = new Account(allAccounts.size()+1, handle, description, p );
         allAccounts.add(temp);
